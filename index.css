@@ -1,26 +1,22 @@
-.textarea {
-  display: block;
-  width: calc(100% - 9.5px);
-  overflow: hidden;
-  resize: none;
-  min-height: calc(100% - 30px);
-  line-height: 20px;
+html {
+  background-color: #F8FFF8;
 }
 
 body {
   height: 100vh;
-  padding: 0;
   margin: 0;
+  overflow: hidden;
+}
+
+textarea {
+  display: block;
+  width: calc(100% - 9.5px);
+  overflow-x: hidden;
   overflow-y: scroll;
-}
-
-.content {
-  height: 100%;
-}
-
-.message {
-  height: 30px;
-  padding-left: 2px;
+  resize: none;
+  min-height: calc(100% - 30px);
+  line-height: 20px;
+  background-color: #F8FFF8;
 }
 
 textarea:valid {
@@ -28,4 +24,10 @@ textarea:valid {
   border-top: 2px solid rgb(0, 95, 204);
   border-left: 3px solid rgb(0, 95, 204);
   border-right: 2px solid rgb(0, 95, 204);
+}
+
+.message {
+  height: 30px;
+  padding-left: 2px;
+  line-height: 25px;
 }

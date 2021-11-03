@@ -1,12 +1,12 @@
 html {
-  background-color: #a8f29a;
+  background-color: #F3EFE0;;
 }
 
 body {
   height: 100vh;
   margin: 0;
   overflow: hidden;
-  background-color: #a8f29a;
+  background-color: #F3EFE0;
 }
 
 textarea {
@@ -17,7 +17,7 @@ textarea {
   resize: none;
   min-height: calc(100% - 30px);
   line-height: 20px;
-  background-color: #a8f29a;
+  background-color: #F3EFE0;
 }
 
 textarea:valid {

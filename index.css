@@ -31,4 +31,16 @@ textarea:valid {
   height: 30px;
   padding-left: 2px;
   line-height: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#counts {
+  height: 30px;
+  padding-right: 2px;
+  line-height: 25px;
+}
+
+#line-count {
+  margin-left: 10px;
 }

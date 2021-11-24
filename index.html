@@ -8,9 +8,34 @@
   <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
 </head>
 <body>
-  <textarea autofocus></textarea>
+  <textarea autofocus oninput="metrics()" id="textarea"></textarea>
   <div class='message'>
-    Peace and love, peace and love!
+    <div>Peace and love, peace and love!</div>
+    <div id="counts">
+      <span id="word-count"></span>
+      <span id="line-count"></span>
+    </div>
   </div>
+
+  <script>
+    function metrics() {
+      const textarea = document.getElementById("textarea").value;
+      const wordSplit = textarea.split(' ');
+      const newLinesCount = textarea.split(/\r\n|\r|\n/).length
+      var wordCount = 0;
+
+      for (var i = 0; i < wordSplit.length; i++) {
+        if (wordSplit[i] != "") {
+            wordCount += 1;
+        }
+      }
+
+      document.getElementById("word-count")
+        .innerHTML = "Word Count: " + wordCount;
+
+      document.getElementById("line-count")
+        .innerHTML = "Line Count: " + newLinesCount;
+    }
+  </script>
 </body>
 </html>

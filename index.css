@@ -7,6 +7,9 @@ body {
   margin: 0;
   overflow: hidden;
   background-color: #F3EFE0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
 }
 
 textarea {
@@ -15,7 +18,7 @@ textarea {
   overflow-x: hidden;
   overflow-y: scroll;
   resize: none;
-  min-height: calc(100% - 30px);
+  height: 100%;
   line-height: 20px;
   background-color: #F3EFE0;
 }
@@ -25,20 +28,20 @@ textarea:valid {
   border-top: 2px solid rgb(0, 95, 204);
   border-left: 3px solid rgb(0, 95, 204);
   border-right: 2px solid rgb(0, 95, 204);
+  outline-color: 2px solid rgb(0, 95, 204);
+  outline: none;
 }
 
 .message {
-  height: 30px;
   padding-left: 2px;
-  line-height: 25px;
   display: flex;
   justify-content: space-between;
 }
 
 #counts {
-  height: 30px;
-  padding-right: 2px;
+  padding-right: 4px;
   line-height: 25px;
+  display: flex;
 }
 
 #line-count {

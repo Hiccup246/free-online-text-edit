@@ -14,28 +14,34 @@ body {
 
 textarea {
   display: block;
-  width: calc(100% - 9.5px);
+  /* width: calc(100% - 9.5px); */
   overflow-x: hidden;
   overflow-y: scroll;
   resize: none;
   height: 100%;
   line-height: 20px;
+  margin: 0;
   background-color: #F3EFE0;
 }
 
 textarea:valid {
-  border-bottom: 2px solid rgb(0, 95, 204);
-  border-top: 2px solid rgb(0, 95, 204);
-  border-left: 3px solid rgb(0, 95, 204);
-  border-right: 2px solid rgb(0, 95, 204);
-  outline-color: 2px solid rgb(0, 95, 204);
+  border: 2px solid rgb(0, 95, 204);
+  /* border-bottom: 2px solid rgb(0, 95, 204); */
+  /* border-top: 2px solid rgb(0, 95, 204); */
+  /* border-left: 3px solid rgb(0, 95, 204); */
+  /* border-right: 2px solid rgb(0, 95, 204);
+  outline-color: 2px solid rgb(0, 95, 204); */
   outline: none;
 }
 
 .message {
   padding-left: 2px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  border-bottom: 2px solid rgb(0, 95, 204);
+  border-left: 2px solid rgb(0, 95, 204);
+  border-right: 2px solid rgb(0, 95, 204);
 }
 
 #counts {

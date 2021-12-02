@@ -23,6 +23,7 @@ textarea {
   line-height: 20px;
   margin: 0;
   background-color: #F3EFE0;
+  font-size: 16px;
 }
 
 textarea:valid {

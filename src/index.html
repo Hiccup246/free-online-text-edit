@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset='utf-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <title>Free online text edit</title>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <meta name='description' content='A simple free online text area with a word and line count for copy and pasting online internet text without formatting'>
-  <meta name="keywords" content='freeonlinetextedit, text edit, textarea, free online text edit, free online textarea, notepad, wordpad'>
-  <meta name="author" content="James Watt">
-  <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="canonical" href="https://freeonlinetextedit.com">
-  <link rel="canonical" href="https://freeonlinetextedit.com">
-  <link rel="publisher">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SE52KZRWJN"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Free online text edit</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='description' content='A simple free online text area with a word and line count for copy and pasting online internet text without formatting'>
+    <meta name="keywords" content='freeonlinetextedit, text edit, textarea, free online text edit, free online textarea, notepad, wordpad'>
+    <meta name="author" content="James Watt">
+    <link rel='stylesheet' type='text/css' media='screen' href='index.css'>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="canonical" href="https://freeonlinetextedit.com">
+    <link rel="canonical" href="https://freeonlinetextedit.com">
+    <link rel="publisher">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SE52KZRWJN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    gtag('config', 'G-SE52KZRWJN');
-  </script>
-</head>
-<body>
-  <textarea autofocus oninput="metrics()" id="textarea"></textarea>
-  <div class='message'>
-    <div class="message__description">Peace and love, peace and love!</div>
-    <div class="message__textarea-counts">
-      <span id="word-count">Word Count: 0</span>
-      <span id="line-count">Line Count: 1</span>
+      gtag('config', 'G-SE52KZRWJN');
+    </script>
+  </head>
+
+  <body>
+    <textarea autofocus oninput="metrics()" id="textarea"></textarea>
+    <div class='message'>
+      <div class="message__description">Peace and love, peace and love!</div>
+      <div class="message__textarea-counts">
+        <span id="word-count">Word Count: 0</span>
+        <span id="line-count">Line Count: 1</span>
+      </div>
     </div>
-  </div>
 
-  <script>
-    function metrics() {
-      const textarea = document.getElementById("textarea").value;
-      const wordSplit = textarea.split(' ');
-      const newLinesCount = textarea.split(/\r\n|\r|\n/).length
-      var wordCount = 0;
+    <script>
+      function metrics() {
+        const textarea = document.getElementById("textarea").value;
+        const wordSplit = textarea.split(' ');
+        const newLinesCount = textarea.split(/\r\n|\r|\n/).length
+        var wordCount = 0;
 
-      for (var i = 0; i < wordSplit.length; i++) {
-        if (wordSplit[i] != "") {
-            wordCount += 1;
+        for (var i = 0; i < wordSplit.length; i++) {
+          if (wordSplit[i] != "") {
+              wordCount += 1;
+          }
         }
+
+        document.getElementById("word-count")
+          .innerHTML = "Word Count: " + wordCount;
+
+        document.getElementById("line-count")
+          .innerHTML = "Line Count: " + newLinesCount;
       }
-
-      document.getElementById("word-count")
-        .innerHTML = "Word Count: " + wordCount;
-
-      document.getElementById("line-count")
-        .innerHTML = "Line Count: " + newLinesCount;
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>

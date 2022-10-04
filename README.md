@@ -21,3 +21,6 @@ The project is very simple and consists of a `src/index.html` file, fav icons an
 
 # Usage
 This project is very simple to get it up and running. After cloning the Github repository all you need to do is use a tool such as a browser to view the `index.html` file.
+
+# ToDo
+- Add ability to save the existing content to a text file

@@ -50,6 +50,10 @@ textarea:valid {
   padding: 10px;
 }
 
+.message__description:hover {
+  text-decoration: underline;
+}
+
 .message__textarea-counts {
   padding: 10px;
   display: flex;

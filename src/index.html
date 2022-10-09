@@ -38,6 +38,8 @@
         <div class="message__description">Peace and love, peace and love!</div>
       </james-watt-calling-card>
 
+      <button class="message__dwl-button" onclick="downloadToTxt()">Download as .txt</button>
+
       <div class="message__textarea-counts">
         <span id="word-count">Word Count: 0</span>
         <span id="line-count">Line Count: 1</span>
@@ -62,6 +64,19 @@
 
         document.getElementById("line-count")
           .innerHTML = "Line Count: " + newLinesCount;
+      }
+
+      // Code inspired from https://robkendal.co.uk/blog/2020-04-17-saving-text-to-client-side-file-using-vanilla-js
+      function downloadToTxt() {
+        const a = document.createElement("a");
+        const content = document.getElementById("textarea").value
+        const file = new Blob([content], {type: "text/plain"});
+        
+        a.href= URL.createObjectURL(file);
+        a.download = "text-edit-notes.txt";
+        a.click();
+
+        URL.revokeObjectURL(a.href);
       }
     </script>
   </body>

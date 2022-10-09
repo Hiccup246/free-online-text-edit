@@ -1,5 +1,10 @@
+:root {
+  --bg-color: #F3EFE0;
+  --border-color: rgb(0, 95, 204);
+}
+
 html {
-  background-color: #F3EFE0;
+  background-color: var(--bg-color);
   height: -webkit-fill-available;
 }
 
@@ -8,7 +13,7 @@ body {
   min-height: -webkit-fill-available;
   margin: 0;
   overflow: hidden;
-  background-color: #F3EFE0;
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -22,27 +27,35 @@ textarea {
   flex: 1;
   line-height: 20px;
   margin: 0;
-  background-color: #F3EFE0;
+  background-color: var(--bg-color);
   font-size: 16px;
 }
 
 textarea:valid {
-  border: 2px solid rgb(0, 95, 204);
+  border: 2px solid var(--border-color);
   outline: none;
 }
 
 .message {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  border-bottom: 2px solid rgb(0, 95, 204);
-  border-left: 2px solid rgb(0, 95, 204);
-  border-right: 2px solid rgb(0, 95, 204);
+  border-bottom: 2px solid var(--border-color);
+  border-left: 2px solid var(--border-color);
+  border-right: 2px solid var(--border-color);
+  font-family: Times, serif;
 }
 
-@media (max-width: 442px) {
+@media (max-width: 566px) {
   .message {
     justify-content: center;
+    flex-direction: column;
+  }
+
+  .message .message__description,
+  .message .message__dwl-button,
+  .message .message__textarea-counts {
+    margin: 0 auto;
+    width: fit-content;
   }
 }
 
@@ -61,4 +74,12 @@ textarea:valid {
 
 #line-count {
   margin-left: 10px;
+}
+
+.message__dwl-button {
+  font-size: medium;
+  background-color: var(--bg-color);
+  cursor: pointer;
+  margin: auto 0;
+  font-family: inherit;
 }

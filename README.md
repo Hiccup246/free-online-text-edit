@@ -1,6 +1,7 @@
 # ✏️ [Free online text edit](https://www.freeonlinetextedit.com/)
 ![](https://img.shields.io/github/license/Hiccup246/free-online-text-edit)
 ![](https://img.shields.io/github/languages/code-size/Hiccup246/free-online-text-edit)
+![](https://img.shields.io/netlify/c50bfac5-93bc-4cc8-ab48-10e800a99944)
 
 A simple free online text edit application built using vanilla Javascript, CSS and HTML
 ![](https://i.imgur.com/Na7iEe3.png)

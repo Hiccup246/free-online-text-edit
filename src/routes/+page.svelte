@@ -1,8 +1,4 @@
 <script lang="ts">
-    import "../app.css";
-	export const prerender = true;
-    import { PUBLIC_UMAMI_WEBSITE_ID, PUBLIC_UMAMI_WEBSITE_URL } from "$env/static/public";
-
 	export function metrics() {
 		const textareaContent:string = (document.getElementById('textarea') as HTMLTextAreaElement).value
 		const wordSplit = textareaContent.split(' ');
@@ -32,16 +28,6 @@
 		URL.revokeObjectURL(a.href);
 	}
 </script>
-
-<svelte:head>
-    <!-- Umami Analytics Tracking Tag -->
-    <script
-        async
-        defer
-        data-website-id={PUBLIC_UMAMI_WEBSITE_ID}
-        src={PUBLIC_UMAMI_WEBSITE_URL}
-    />
-</svelte:head>
 
 <textarea
 	aria-label="text edit"

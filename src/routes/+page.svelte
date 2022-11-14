@@ -1,6 +1,7 @@
 <script lang="ts">
 	export function metrics() {
-		const textareaContent:string = (document.getElementById('textarea') as HTMLTextAreaElement).value
+		const textareaContent: string = (document.getElementById('textarea') as HTMLTextAreaElement)
+			.value;
 		const wordSplit = textareaContent.split(' ');
 		const newLinesCount = textareaContent.split(/\r\n|\r|\n/).length;
 		var wordCount = 0;

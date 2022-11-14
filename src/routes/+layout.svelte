@@ -6,7 +6,12 @@
 
 <svelte:head>
 	<!-- Umami Analytics Tracking Tags -->
-	<script async defer data-website-id={PUBLIC_UMAMI_WEBSITE_ID} src={PUBLIC_UMAMI_WEBSITE_URL} />
+	<script
+		async
+		defer
+		data-website-id={PUBLIC_UMAMI_WEBSITE_ID}
+		src={PUBLIC_UMAMI_WEBSITE_URL}
+	></script>
 </svelte:head>
 
-<slot></slot>
+<slot />

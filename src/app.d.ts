@@ -8,7 +8,7 @@ declare namespace App {
 	// interface Platform {}
 }
 
-declare module '$env/static/public' {
+declare module "$env/static/public" {
 	export const PUBLIC_UMAMI_WEBSITE_ID: string;
 	export const PUBLIC_UMAMI_WEBSITE_URL: string;
 }

@@ -1,34 +1,53 @@
 <script lang="ts">
+	import SiteScreenshot from "$lib/assets/site-screenshot.webp";
+
 	export function metrics() {
-		const textareaContent: string = (document.getElementById('textarea') as HTMLTextAreaElement)
+		const textareaContent: string = (document.getElementById("textarea") as HTMLTextAreaElement)
 			.value;
-		const wordSplit = textareaContent.split(' ');
+		const wordSplit = textareaContent.split(" ");
 		const newLinesCount = textareaContent.split(/\r\n|\r|\n/).length;
 		var wordCount = 0;
 
 		for (var i = 0; i < wordSplit.length; i++) {
-			if (wordSplit[i] != '') {
+			if (wordSplit[i] != "") {
 				wordCount += 1;
 			}
 		}
-		document.getElementById('word-count')!.innerHTML = 'Word Count: ' + wordCount;
+		document.getElementById("word-count")!.innerHTML = "Word Count: " + wordCount;
 
-		document.getElementById('line-count')!.innerHTML = 'Line Count: ' + newLinesCount;
+		document.getElementById("line-count")!.innerHTML = "Line Count: " + newLinesCount;
 	}
 
 	// Code inspired from https://robkendal.co.uk/blog/2020-04-17-saving-text-to-client-side-file-using-vanilla-js
 	export function downloadToTxt() {
-		const a = document.createElement('a');
-		const textareaContent = (document.getElementById('textarea') as HTMLTextAreaElement).value;
-		const file = new Blob([textareaContent], { type: 'text/plain' });
+		const a = document.createElement("a");
+		const textareaContent = (document.getElementById("textarea") as HTMLTextAreaElement).value;
+		const file = new Blob([textareaContent], { type: "text/plain" });
 
 		a.href = URL.createObjectURL(file);
-		a.download = 'text-edit-notes.txt';
+		a.download = "text-edit-notes.txt";
 		a.click();
 
 		URL.revokeObjectURL(a.href);
 	}
 </script>
+
+<svelte:head>
+	<meta property="og:title" content="Free online text edit" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content={SiteScreenshot} />
+	<meta property="og:url" content="https://www.freeonlinetextedit.com" />
+	<meta
+		property="og:description"
+		content="A simple, free online text area for jotting down what comes to mind"
+	/>
+	<meta property="og:site_name" content="Free online text edit" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content={SiteScreenshot} />
+	<meta name="twitter:image:alt" content="A screenshot of www.freeonlinetextedit.com" />
+	<meta name="twitter:title" content="Free online text edit" />
+	<meta name="twitter:creator" content="@jameswattnz" />
+</svelte:head>
 
 <textarea
 	aria-label="text edit"

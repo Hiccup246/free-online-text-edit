@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SiteScreenshot from "$lib/assets/site-screenshot.webp";
+	import SiteScreenshot from "$lib/images/site-screenshot.webp";
 
 	export function metrics() {
 		const textareaContent: string = (document.getElementById("textarea") as HTMLTextAreaElement)
@@ -53,28 +53,37 @@
 	<meta name="twitter:creator" content="@jameswattnz" />
 </svelte:head>
 
-<!-- svelte-ignore a11y-autofocus -->
-<textarea
-	aria-label="text edit"
-	aria-labelledby="text edit"
-	autofocus
-	on:input={() => metrics()}
-	id="textarea"
-/>
-<div class="message">
-	<james-watt-calling-card modal-bg-color="#F3EFE0">
-		<div class="message__description">Peace and love, peace and love!</div>
-	</james-watt-calling-card>
+<section>
+	<!-- svelte-ignore a11y-autofocus -->
+	<textarea
+		aria-label="text edit"
+		aria-labelledby="text edit"
+		autofocus
+		on:input={() => metrics()}
+		id="textarea"
+	/>
+	<div class="message">
+		<james-watt-calling-card modal-bg-color="#F3EFE0">
+			<div class="message__description">Peace and love, peace and love!</div>
+		</james-watt-calling-card>
 
-	<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download as .txt</button>
+		<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download as .txt</button>
 
-	<div class="message__textarea-counts">
-		<span id="word-count">Word Count: 0</span>
-		<span id="line-count">Line Count: 1</span>
+		<div class="message__textarea-counts">
+			<span id="word-count">Word Count: 0</span>
+			<span id="line-count">Line Count: 1</span>
+		</div>
 	</div>
-</div>
+</section>
 
 <style>
+	section {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
 	textarea {
 		display: block;
 		overflow-x: hidden;

@@ -5,7 +5,7 @@
 ![](https://img.shields.io/netlify/c50bfac5-93bc-4cc8-ab48-10e800a99944)
 
 A simple free online text edit application built using vanilla Javascript, CSS and HTML
-![Site Screenshot](https://raw.githubusercontent.com/Hiccup246/free-online-text-edit/main/src/lib/assets/site-screenshot.webp)
+![Site Screenshot](https://raw.githubusercontent.com/Hiccup246/free-online-text-edit/main/src/lib/images/site-screenshot.webp)
 
 # Description
 

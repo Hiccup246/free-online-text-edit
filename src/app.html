@@ -22,11 +22,12 @@
 		<link rel="manifest" href="site.webmanifest" />
 		<link rel="canonical" href="https://www.freeonlinetextedit.com" />
 		<link url="https://www.freeonlinetextedit.com" rel="publisher" />
+
 		<!-- James Watt Calling Card Web Component -->
 		<script type="module" src="https://unpkg.com/james-watt-calling-card/index.js"></script>
 		%sveltekit.head%
 	</head>
-	<body>
-		%sveltekit.body%
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

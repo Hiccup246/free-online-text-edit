@@ -1,7 +1,20 @@
 {
 	"name": "free-online-text-edit",
+	"description": "A simple, free online text area for jotting down what comes to mind",
+	"author": "James Watt",
+	"homepage": "https://www.freeonlinetextedit.com/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Hiccup246/free-online-text-edit"
+	},
+	"license": "MIT",
 	"version": "0.0.1",
-	"private": true,
+	"keywords": [
+		"svelte",
+		"typescript",
+		"vite",
+		"svelte3"
+	],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",

@@ -5,7 +5,7 @@
 ![](https://img.shields.io/netlify/c50bfac5-93bc-4cc8-ab48-10e800a99944)
 
 A simple free online text edit application built using vanilla Javascript, CSS and HTML
-![](https://i.imgur.com/Na7iEe3.png)
+![Site Screenshot](https://raw.githubusercontent.com/Hiccup246/free-online-text-edit/main/src/lib/assets/site-screenshot.webp)
 
 # Description
 
@@ -30,4 +30,4 @@ This project is very simple to get it up and running. After cloning the Github r
 
 # ToDo
 
-- Add ability to save the existing content to a text file
+- Add copy to clipboard functionality

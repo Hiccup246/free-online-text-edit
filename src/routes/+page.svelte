@@ -13,9 +13,12 @@
 				wordCount += 1;
 			}
 		}
-		document.getElementById("word-count")!.innerHTML = "Word Count: " + wordCount;
 
-		document.getElementById("line-count")!.innerHTML = "Line Count: " + newLinesCount;
+		const wordCountElem = document.getElementById("word-count");
+		const lineCountElem = document.getElementById("line-count");
+
+		if (wordCountElem) wordCountElem.innerHTML = "Word Count: " + wordCount;
+		if (lineCountElem) lineCountElem.innerHTML = "Line Count: " + newLinesCount;
 	}
 
 	// Code inspired from https://robkendal.co.uk/blog/2020-04-17-saving-text-to-client-side-file-using-vanilla-js
@@ -42,6 +45,7 @@
 		content="A simple, free online text area for jotting down what comes to mind"
 	/>
 	<meta property="og:site_name" content="Free online text edit" />
+
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:image" content={SiteScreenshot} />
 	<meta name="twitter:image:alt" content="A screenshot of www.freeonlinetextedit.com" />
@@ -49,6 +53,7 @@
 	<meta name="twitter:creator" content="@jameswattnz" />
 </svelte:head>
 
+<!-- svelte-ignore a11y-autofocus -->
 <textarea
 	aria-label="text edit"
 	aria-labelledby="text edit"

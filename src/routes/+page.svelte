@@ -4,7 +4,7 @@
 	export function setMetrics() {
 		const textareaContent: string = (document.getElementById("textarea") as HTMLTextAreaElement)
 			.value;
-		const wordSplit = textareaContent.split(" ");
+		const wordSplit = textareaContent.split(/\r\n|\r|\n|\s/);
 		const newLinesCount = textareaContent.split(/\r\n|\r|\n/).length;
 		var wordCount = 0;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import SiteScreenshot from "$lib/images/site-screenshot.webp";
 
-	export function metrics() {
+	export function setMetrics() {
 		const textareaContent: string = (document.getElementById("textarea") as HTMLTextAreaElement)
 			.value;
 		const wordSplit = textareaContent.split(" ");
@@ -59,7 +59,7 @@
 		aria-label="text edit"
 		aria-labelledby="text edit"
 		autofocus
-		on:input={() => metrics()}
+		on:input={() => setMetrics()}
 		id="textarea"
 	/>
 	<div class="message">

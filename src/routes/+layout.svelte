@@ -5,6 +5,7 @@
 
 <svelte:head>
 	<!-- Umami Analytics Tracking Tags -->
+	<!-- Umami Analytics Tracking Tags -->
 	<script
 		async
 		defer

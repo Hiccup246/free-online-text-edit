@@ -4,30 +4,44 @@
 ![](https://img.shields.io/github/languages/code-size/Hiccup246/free-online-text-edit)
 ![](https://img.shields.io/netlify/c50bfac5-93bc-4cc8-ab48-10e800a99944)
 
-A simple free online text edit application built using vanilla Javascript, CSS and HTML
+A simple free online text edit application built using SvelteKit and deployed using Vercel.
 ![Site Screenshot](https://raw.githubusercontent.com/Hiccup246/free-online-text-edit/main/src/lib/images/site-screenshot.webp)
 
 # Description
 
-While working as a professional software engineer I found myself constantly googling online text editors so I could remove styling from copy-pasted text. I did not particularly like doing this as I was unsure about the data the sites were saving. I could have used an application but I liked having a browser experience. As a result of this frustration and the hunger to do some old-school vanilla HTML, Javascript and CSS I decided to create a text edit application to act as a personal dev tool and hence this project was born.
+While working as a professional software engineer I found myself constantly googling online text editors so I could remove styling from copy-pasted text. I did not particularly like doing this as I was unsure about the data the sites were saving. As a result I created this simple text edit application.
 
-The application is mobile friendly and consists of a large text area with a background color that is dyslexic and eye-friendly. Underneath the text area there is a footer that contains a positive message and a word and line count to aid in understanding how much content you are copy-pasting. The application has been deployed using Cloudflare.
+The application is mobile friendly and consists of a large text area with a background color that is dyslexic and eye-friendly. Underneath the text area there is a footer that contains a positive message and some handy features.
+
+## Features
+- A word and line count
+- A button to download your notes into a `.txt` file and a input to customise the file name
+- A pretty print button which will format valid JSON
+
+<br>
 
 # Understanding the project
+The project is built using [SvelteKit](https://kit.svelte.dev/) and consists of a single  layout and page. The projects core structured is:
+- `app.html` - Contains header tags (SEO, favicon etc)
+- `app.d.ts` - Declares environment variable types
+- `/routes/`
+  - `+layout.svelte` - Injects page specific tracking
+  - `+page.svelte` - The main page component
+  -  `styles.css` - Contains global site styles
 
-The project is very simple and consists of a `src/index.html` file, fav icons and SEO files. The `src/index.html` is broken into three parts and has an associated `index.css` file to provide styling:
 
-- Head Tag
-  - Contains SEO tags and Google Analytics
-- Body Tag
-  - Contains the structure and content of the page
-- Script Tag
-  - Contains the necessary javascript to keep track of and update the page about the word and line counts.
+
+<br>
 
 # Usage
+To get this project up and running follow the commands below:
+1. Clone this repository and navigate to the root folder
+2. Install [PNPM](https://pnpm.io/)
+2. Run `pnpm install`
+3. Run `pnpm run dev`
 
-This project is very simple to get it up and running. After cloning the Github repository all you need to do is use a tool such as a browser to view the `index.html` file.
+<br>
 
 # ToDo
 
-- Add copy to clipboard functionality
+- Enhance JSON pretty printing to format non valid JSON

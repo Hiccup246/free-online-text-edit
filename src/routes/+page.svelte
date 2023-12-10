@@ -122,10 +122,13 @@
 		border-left: 2px solid var(--border-color);
 		border-right: 2px solid var(--border-color);
 		font-family: Times, serif;
+		padding: 10px;
+		align-items: center;
+		gap: 10px;
 	}
 
 	.message__description {
-		padding: 15px 10px 15px 10px;
+		margin: auto 0;
 		text-align: center;
 		display: flex;
 	}
@@ -135,7 +138,7 @@
 	}
 
 	.message__textarea-counts {
-		padding: 10px;
+		margin: auto 0;
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
@@ -143,22 +146,8 @@
 		justify-content: center;
 	}
 
-	#line-count {
-		min-width: fit-content;
-		text-align: left;
-		height: fit-content;
-		margin: auto 0;
-	}
-
-	#word-count {
-		min-width: fit-content;
-		text-align: left;
-		height: fit-content;
-		margin: auto 0;
-	}
-
 	.message__actions {
-		padding: 10px;
+		margin: auto 0;
 		display: grid;
 		grid-template-columns: repeat(2,minmax(0,1fr));
 		gap: 20px;
@@ -188,12 +177,7 @@
 		.message {
 			justify-content: center;
 			flex-direction: column;
-		}
-
-		.message .message__description,
-		.message .message__textarea-counts {
-			margin: 0 auto;
-			width: fit-content;
+			gap: 20px;
 		}
 
 		.message__actions {

@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/github/license/Hiccup246/free-online-text-edit)
 ![](https://img.shields.io/github/languages/code-size/Hiccup246/free-online-text-edit)
-![](https://img.shields.io/netlify/c50bfac5-93bc-4cc8-ab48-10e800a99944)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=free-online-text-edit)
 
 A simple free online text edit application built using SvelteKit and deployed using Vercel.
 ![Site Screenshot](https://raw.githubusercontent.com/Hiccup246/free-online-text-edit/main/src/lib/images/site-screenshot.webp)

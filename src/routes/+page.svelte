@@ -44,6 +44,18 @@
 
 		return trimmedInput;
 	}
+
+	export function prettyPrint() {
+		try {
+			const textarea = (document.getElementById("textarea") as HTMLTextAreaElement)
+
+			const prettyValue = JSON.stringify(JSON.parse(textarea.value), null, 2);
+
+			textarea.value = prettyValue;	
+		} catch (_error) {
+			alert("You can only pritty print valid JSON!")
+		}
+	}
 </script>
 
 <svelte:head>
@@ -79,7 +91,11 @@
 		</james-watt-calling-card>
 
 		<div class="message__actions">
-			<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download as .txt</button>
+			<div class="message__buttons">
+				<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download as .txt</button>
+				<button class="message_pretty-print" title="JSON Pretty Print" on:click={() => prettyPrint()}>PP</button>
+			</div>
+
 			<input class="message__filename" type="text" max="50" placeholder="Txt filename" id="filename-input"/>
 		</div>
 
@@ -91,6 +107,12 @@
 </section>
 
 <style>
+	.message__buttons {
+		display: flex;
+		justify-content: space-between;
+		gap: 5px;
+	}
+
 	section {
 		height: 100vh;
 		display: flex;
@@ -121,7 +143,6 @@
 		border-bottom: 2px solid var(--border-color);
 		border-left: 2px solid var(--border-color);
 		border-right: 2px solid var(--border-color);
-		font-family: Times, serif;
 		padding: 10px;
 		align-items: center;
 		gap: 10px;
@@ -149,28 +170,30 @@
 	.message__actions {
 		margin: auto 0;
 		display: grid;
-		grid-template-columns: repeat(2,minmax(0,1fr));
-		gap: 20px;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 30px;
+		align-items: center;
 	}
 
 	.message__dwl-button {
-		font-size: medium;
 		background-color: var(--bg-color);
 		cursor: pointer;
-		font-family: inherit;
 	}
 
 	.message__filename {
 		background-color: var(--bg-color);
-		font-size: medium;
-		font-family: inherit;
 		outline: none;
 		border-style: outset;
 		text-align: center;
+		height: -webkit-fill-available;
 	}
 
 	.message__filename:focus {
 		border-style: inset;
+	}
+
+	.message_pretty-print {
+		width: fit-content;
 	}
 
 	@media (max-width: 566px) {

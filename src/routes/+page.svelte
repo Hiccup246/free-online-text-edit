@@ -1,11 +1,31 @@
 <script lang="ts">
 	import SiteScreenshot from "$lib/images/site-screenshot.webp";
+	import { onMount } from "svelte";
+
+	// Code inspired from https://www.eddymens.com/blog/how-to-allow-the-use-of-tabs-in-a-textarea
+	onMount(async () => {
+		var inputField = (document.getElementById("textarea") as HTMLTextAreaElement);
+		const thisRef = inputField;
+
+		inputField.onkeydown = (_event) => {
+			if (_event.keyCode === 9) {
+				thisRef.setRangeText(
+						'\t',
+						thisRef.selectionStart,
+						thisRef.selectionStart,
+						'end'
+					)
+
+				return false; //prevent default action
+			}
+		}
+	})
 
 	export function setMetrics() {
 		const textareaContent: string = (document.getElementById("textarea") as HTMLTextAreaElement)
 			.value;
 
-		if (textareaContent == "") setWordLineCount(0, 0);
+		if (textareaContent == "") return setWordLineCount(0, 0);
 	
 		const wordSplit = textareaContent.split(/\r\n|\r|\n|\s/);
 		const newLinesCount = textareaContent.split(/\r\n|\r|\n/).length;

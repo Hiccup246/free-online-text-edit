@@ -28,10 +28,21 @@
 		const file = new Blob([textareaContent], { type: "text/plain" });
 
 		a.href = URL.createObjectURL(file);
-		a.download = "text-edit-notes.txt";
+		a.download = txtFilename() || "text-edit-notes";
 		a.click();
 
 		URL.revokeObjectURL(a.href);
+	}
+
+	export function txtFilename() {
+		const inputValue = (document.getElementById("filename-input") as HTMLInputElement).value;
+		const inputWithoutTxtExtension = inputValue.replace(".txt", "");
+		const trimmedInput = inputWithoutTxtExtension.trim();
+
+		if (trimmedInput.length < 1) return null;
+
+
+		return trimmedInput;
 	}
 </script>
 
@@ -67,7 +78,10 @@
 			<div class="message__description">Peace and love, peace and love!</div>
 		</james-watt-calling-card>
 
-		<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download as .txt</button>
+		<div class="message__actions">
+			<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download as .txt</button>
+			<input class="message__filename" type="text" max="50" placeholder="Txt filename" id="filename-input"/>
+		</div>
 
 		<div class="message__textarea-counts">
 			<span id="word-count">Word Count: 0</span>
@@ -110,22 +124,10 @@
 		font-family: Times, serif;
 	}
 
-	@media (max-width: 566px) {
-		.message {
-			justify-content: center;
-			flex-direction: column;
-		}
-
-		.message .message__description,
-		.message .message__dwl-button,
-		.message .message__textarea-counts {
-			margin: 0 auto;
-			width: fit-content;
-		}
-	}
-
 	.message__description {
-		padding: 10px;
+		padding: 15px 10px 15px 10px;
+		text-align: center;
+		display: flex;
 	}
 
 	.message__description:hover {
@@ -135,17 +137,67 @@
 	.message__textarea-counts {
 		padding: 10px;
 		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		gap: 10px;
+		justify-content: center;
 	}
 
 	#line-count {
-		margin-left: 10px;
+		min-width: fit-content;
+		text-align: left;
+		height: fit-content;
+		margin: auto 0;
+	}
+
+	#word-count {
+		min-width: fit-content;
+		text-align: left;
+		height: fit-content;
+		margin: auto 0;
+	}
+
+	.message__actions {
+		padding: 10px;
+		display: grid;
+		grid-template-columns: repeat(2,minmax(0,1fr));
+		gap: 20px;
 	}
 
 	.message__dwl-button {
 		font-size: medium;
 		background-color: var(--bg-color);
 		cursor: pointer;
-		margin: auto 0;
 		font-family: inherit;
+	}
+
+	.message__filename {
+		background-color: var(--bg-color);
+		font-size: medium;
+		font-family: inherit;
+		outline: none;
+		border-style: outset;
+		text-align: center;
+	}
+
+	.message__filename:focus {
+		border-style: inset;
+	}
+
+	@media (max-width: 566px) {
+		.message {
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		.message .message__description,
+		.message .message__textarea-counts {
+			margin: 0 auto;
+			width: fit-content;
+		}
+
+		.message__actions {
+			grid-template-columns: repeat(1, minmax(0,1fr));
+		}
 	}
 </style>

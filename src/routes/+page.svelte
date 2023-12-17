@@ -119,7 +119,7 @@
 
 		<div class="message__actions">
 			<div class="message__buttons">
-				<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download as .txt</button>
+				<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download Txt</button>
 				<button class="message_pretty-print" title="JSON Pretty Print" on:click={() => prettyPrint()}>PP</button>
 			</div>
 
@@ -209,10 +209,11 @@
 
 	.message__filename {
 		background-color: var(--bg-color);
+		text-align: center;
+		height: 100%;
 		outline: none;
 		border-style: outset;
-		text-align: center;
-		height: -webkit-fill-available;
+		appearance: unset;
 	}
 
 	.message__filename:focus {

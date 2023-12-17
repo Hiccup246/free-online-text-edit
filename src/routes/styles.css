@@ -19,3 +19,7 @@ button, input {
 	font-size: medium;
 	background-color: var(--bg-color);
 }
+
+* {
+	box-sizing: border-box;
+}

@@ -7,14 +7,29 @@
 		var inputField = (document.getElementById("textarea") as HTMLTextAreaElement);
 		const thisRef = inputField;
 
-		inputField.onkeydown = (_event) => {
-			if (_event.keyCode === 9) {
+		inputField.onkeydown = (event) => {
+			if (event.shiftKey && event.key == "Tab") {				
+				const indexOfLastTab = inputField.value.lastIndexOf("\t", thisRef.selectionStart)
+
+				if (indexOfLastTab != -1) {
+					thisRef.setRangeText(
+						'',
+						indexOfLastTab,
+						indexOfLastTab + 1,
+						'end'
+					)
+				}
+
+				return false; //prevent default action
+			}
+
+			if (!event.shiftKey && event.key == "Tab") {
 				thisRef.setRangeText(
 						'\t',
 						thisRef.selectionStart,
 						thisRef.selectionStart,
 						'end'
-					)
+				)
 
 				return false; //prevent default action
 			}

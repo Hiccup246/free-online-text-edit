@@ -8,10 +8,11 @@
 		const thisRef = inputField;
 
 		inputField.onkeydown = (event) => {
-			if (event.shiftKey && event.key == "Tab") {				
+			if (event.shiftKey && event.key == "Tab") {
+				const lastNewLine = inputField.value.lastIndexOf("\n", thisRef.selectionStart)
 				const indexOfLastTab = inputField.value.lastIndexOf("\t", thisRef.selectionStart)
 
-				if (indexOfLastTab != -1) {
+				if ((indexOfLastTab >= lastNewLine || lastNewLine == -1 || lastNewLine >= thisRef.selectionStart) && indexOfLastTab != -1) {
 					thisRef.setRangeText(
 						'',
 						indexOfLastTab,
@@ -19,6 +20,7 @@
 						'end'
 					)
 				}
+
 
 				return false; //prevent default action
 			}

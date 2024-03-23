@@ -120,11 +120,10 @@
 	<meta name="twitter:creator" content="@jameswattnz" />
 </svelte:head>
 
-<section>
+<div class="app">
 	<!-- svelte-ignore a11y-autofocus -->
 	<textarea
 		aria-label="text edit"
-		aria-labelledby="text edit"
 		autofocus
 		on:input={() => setMetrics()}
 		id="textarea"
@@ -140,7 +139,7 @@
 				<button class="message_pretty-print" title="JSON Pretty Print" on:click={() => prettyPrint()}>PP</button>
 			</div>
 
-			<input class="message__filename" type="text" max="50" placeholder="Txt filename" id="filename-input"/>
+			<input class="message__filename" type="text" maxlength="50" placeholder="Txt filename" id="filename-input"/>
 		</div>
 
 		<div class="message__textarea-counts">
@@ -148,7 +147,7 @@
 			<span id="line-count">Line Count: 0</span>
 		</div>
 	</div>
-</section>
+</div>
 
 <style>
 	.message__buttons {
@@ -157,7 +156,7 @@
 		gap: 5px;
 	}
 
-	section {
+	.app {
 		height: 100vh;
 		display: flex;
 		flex-direction: column;

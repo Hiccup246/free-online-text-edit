@@ -1,5 +1,4 @@
 <script lang="ts">
-	import SiteScreenshot from '$lib/site-screenshot.webp';
 	import { onMount } from 'svelte';
 
 	// Code inspired from https://www.eddymens.com/blog/how-to-allow-the-use-of-tabs-in-a-textarea
@@ -98,7 +97,7 @@
 <svelte:head>
 	<meta property="og:title" content="Free online text edit" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content={SiteScreenshot} />
+	<meta property="og:image" content="https://www.freeonlinetextedit.com/site-screenshot.webp" />
 	<meta property="og:url" content="https://www.freeonlinetextedit.com" />
 	<meta
 		property="og:description"
@@ -107,7 +106,7 @@
 	<meta property="og:site_name" content="Free online text edit" />
 
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:image" content={SiteScreenshot} />
+	<meta name="twitter:image" content="https://www.freeonlinetextedit.com/site-screenshot.webp" />
 	<meta name="twitter:image:alt" content="A screenshot of www.freeonlinetextedit.com" />
 	<meta name="twitter:title" content="Free online text edit" />
 	<meta name="twitter:creator" content="@jameswattnz" />

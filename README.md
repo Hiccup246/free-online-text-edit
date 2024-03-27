@@ -5,7 +5,7 @@
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=free-online-text-edit)
 
 A simple free online text edit application built using SvelteKit and deployed using Vercel.
-![Site Screenshot](https://raw.githubusercontent.com/Hiccup246/free-online-text-edit/main/src/lib/images/site-screenshot.webp)
+![Site Screenshot](https://raw.githubusercontent.com/Hiccup246/free-online-text-edit/main/static/site-screenshot.webp)
 
 # Description
 

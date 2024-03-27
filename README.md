@@ -14,6 +14,7 @@ While working as a professional software engineer I found myself constantly goog
 The application is mobile friendly and consists of a large text area with a background color that is dyslexic and eye-friendly. Underneath the text area there is a footer that contains a positive message and some handy features.
 
 ## Features
+
 - A word and line count
 - A button to download your notes into a `.txt` file and a input to customise the file name
 - A pretty print button which will format valid JSON
@@ -21,24 +22,26 @@ The application is mobile friendly and consists of a large text area with a back
 <br>
 
 # Understanding the project
-The project is built using [SvelteKit](https://kit.svelte.dev/) and consists of a single  layout and page. The projects core structured is:
+
+The project is built using [SvelteKit](https://kit.svelte.dev/) and consists of a single layout and page. The projects core structured is:
+
 - `app.html` - Contains header tags (SEO, favicon etc)
 - `app.d.ts` - Declares environment variable types
 - `/routes/`
   - `+layout.svelte` - Injects page specific tracking
   - `+page.svelte` - The main page component
-  -  `styles.css` - Contains global site styles
-
-
+  - `styles.css` - Contains global site styles
 
 <br>
 
 # Usage
+
 To get this project up and running follow the commands below:
+
 1. Clone this repository and navigate to the root folder
 2. Install [PNPM](https://pnpm.io/)
-2. Run `pnpm install`
-3. Run `pnpm run dev`
+3. Run `pnpm install`
+4. Run `pnpm run dev`
 
 <br>
 

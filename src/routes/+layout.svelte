@@ -1,10 +1,9 @@
-<script>
-	import "./styles.css";
-	import { PUBLIC_UMAMI_WEBSITE_ID, PUBLIC_UMAMI_WEBSITE_URL } from "$env/static/public";
+<script lang="ts">
+	import './styles.css';
+	import { PUBLIC_UMAMI_WEBSITE_ID, PUBLIC_UMAMI_WEBSITE_URL } from '$env/static/public';
 </script>
 
 <svelte:head>
-	<!-- Umami Analytics Tracking Tags -->
 	<!-- Umami Analytics Tracking Tags -->
 	<script
 		async

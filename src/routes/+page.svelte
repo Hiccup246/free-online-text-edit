@@ -1,103 +1,96 @@
 <script lang="ts">
-	import SiteScreenshot from "$lib/images/site-screenshot.webp";
-	import { onMount } from "svelte";
+	import SiteScreenshot from '$lib/site-screenshot.webp';
+	import { onMount } from 'svelte';
 
 	// Code inspired from https://www.eddymens.com/blog/how-to-allow-the-use-of-tabs-in-a-textarea
 	onMount(async () => {
-		var inputField = (document.getElementById("textarea") as HTMLTextAreaElement);
+		var inputField = document.getElementById('textarea') as HTMLTextAreaElement;
 		const thisRef = inputField;
 
 		inputField.onkeydown = (event) => {
-			if (event.shiftKey && event.key == "Tab") {
-				const lastNewLine = inputField.value.lastIndexOf("\n", thisRef.selectionStart)
-				const indexOfLastTab = inputField.value.lastIndexOf("\t", thisRef.selectionStart)
+			if (event.shiftKey && event.key == 'Tab') {
+				const lastNewLine = inputField.value.lastIndexOf('\n', thisRef.selectionStart);
+				const indexOfLastTab = inputField.value.lastIndexOf('\t', thisRef.selectionStart);
 
-				if ((indexOfLastTab >= lastNewLine || lastNewLine == -1 || lastNewLine >= thisRef.selectionStart) && indexOfLastTab != -1) {
-					thisRef.setRangeText(
-						'',
-						indexOfLastTab,
-						indexOfLastTab + 1,
-						'end'
-					)
+				if (
+					(indexOfLastTab >= lastNewLine ||
+						lastNewLine == -1 ||
+						lastNewLine >= thisRef.selectionStart) &&
+					indexOfLastTab != -1
+				) {
+					thisRef.setRangeText('', indexOfLastTab, indexOfLastTab + 1, 'end');
 				}
 
-
 				return false; //prevent default action
 			}
 
-			if (!event.shiftKey && event.key == "Tab") {
-				thisRef.setRangeText(
-						'\t',
-						thisRef.selectionStart,
-						thisRef.selectionStart,
-						'end'
-				)
+			if (!event.shiftKey && event.key == 'Tab') {
+				thisRef.setRangeText('\t', thisRef.selectionStart, thisRef.selectionStart, 'end');
 
 				return false; //prevent default action
 			}
-		}
-	})
+		};
+	});
 
 	export function setMetrics() {
-		const textareaContent: string = (document.getElementById("textarea") as HTMLTextAreaElement)
+		const textareaContent: string = (document.getElementById('textarea') as HTMLTextAreaElement)
 			.value;
 
-		if (textareaContent == "") return setWordLineCount(0, 0);
-	
+		if (textareaContent == '') return setWordLineCount(0, 0);
+
 		const wordSplit = textareaContent.split(/\r\n|\r|\n|\s/);
 		const newLinesCount = textareaContent.split(/\r\n|\r|\n/).length;
 		var wordCount = 0;
 
 		for (var i = 0; i < wordSplit.length; i++) {
-			if (wordSplit[i] != "") {
+			if (wordSplit[i] != '') {
 				wordCount += 1;
 			}
 		}
 
-		setWordLineCount(wordCount, newLinesCount)
+		setWordLineCount(wordCount, newLinesCount);
 	}
 
 	export function setWordLineCount(wordCount: number, lineCount: number) {
-		const wordCountElem = document.getElementById("word-count");
-		const lineCountElem = document.getElementById("line-count");
+		const wordCountElem = document.getElementById('word-count');
+		const lineCountElem = document.getElementById('line-count');
 
-		if (wordCountElem) wordCountElem.innerHTML = "Word Count: " + wordCount;
-		if (lineCountElem) lineCountElem.innerHTML = "Line Count: " + lineCount;
+		if (wordCountElem) wordCountElem.innerHTML = 'Word Count: ' + wordCount;
+		if (lineCountElem) lineCountElem.innerHTML = 'Line Count: ' + lineCount;
 	}
 
 	// Code inspired from https://robkendal.co.uk/blog/2020-04-17-saving-text-to-client-side-file-using-vanilla-js
 	export function downloadToTxt() {
-		const a = document.createElement("a");
-		const textareaContent = (document.getElementById("textarea") as HTMLTextAreaElement).value;
-		const file = new Blob([textareaContent], { type: "text/plain" });
+		const a = document.createElement('a');
+		const textareaContent = (document.getElementById('textarea') as HTMLTextAreaElement).value;
+		const file = new Blob([textareaContent], { type: 'text/plain' });
 
 		a.href = URL.createObjectURL(file);
-		a.download = txtFilename() || "text-edit-notes";
+		a.download = txtFilename() || 'text-edit-notes';
 		a.click();
 
 		URL.revokeObjectURL(a.href);
 	}
 
 	export function txtFilename() {
-		const inputValue = (document.getElementById("filename-input") as HTMLInputElement).value;
-		const inputWithoutTxtExtension = inputValue.replace(".txt", "");
+		const inputValue = (document.getElementById('filename-input') as HTMLInputElement).value;
+		const inputWithoutTxtExtension = inputValue.replace('.txt', '');
 		const trimmedInput = inputWithoutTxtExtension.trim();
 
 		if (trimmedInput.length < 1) return null;
-
 
 		return trimmedInput;
 	}
 
 	export function prettyPrint() {
 		try {
-			const textarea = (document.getElementById("textarea") as HTMLTextAreaElement)
+			const textarea = document.getElementById('textarea') as HTMLTextAreaElement;
 
 			const prettyValue = JSON.stringify(JSON.parse(textarea.value), null, 2);
 
-			textarea.value = prettyValue;	
+			textarea.value = prettyValue;
 		} catch (_error) {
-			alert("You can only pritty print valid JSON!")
+			alert('You can only pritty print valid JSON!');
 		}
 	}
 </script>
@@ -122,12 +115,7 @@
 
 <div class="app">
 	<!-- svelte-ignore a11y-autofocus -->
-	<textarea
-		aria-label="text edit"
-		autofocus
-		on:input={() => setMetrics()}
-		id="textarea"
-	/>
+	<textarea aria-label="text edit" autofocus on:input={() => setMetrics()} id="textarea" />
 	<div class="message">
 		<james-watt-calling-card modal-bg-color="#F3EFE0">
 			<div class="message__description">Peace and love, peace and love!</div>
@@ -136,10 +124,20 @@
 		<div class="message__actions">
 			<div class="message__buttons">
 				<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download Txt</button>
-				<button class="message_pretty-print" title="JSON Pretty Print" on:click={() => prettyPrint()}>PP</button>
+				<button
+					class="message_pretty-print"
+					title="JSON Pretty Print"
+					on:click={() => prettyPrint()}>PP</button
+				>
 			</div>
 
-			<input class="message__filename" type="text" maxlength="50" placeholder="Txt filename" id="filename-input"/>
+			<input
+				class="message__filename"
+				type="text"
+				maxlength="50"
+				placeholder="Txt filename"
+				id="filename-input"
+			/>
 		</div>
 
 		<div class="message__textarea-counts">
@@ -248,7 +246,7 @@
 		}
 
 		.message__actions {
-			grid-template-columns: repeat(1, minmax(0,1fr));
+			grid-template-columns: repeat(1, minmax(0, 1fr));
 		}
 	}
 </style>

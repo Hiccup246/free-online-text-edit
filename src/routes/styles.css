@@ -14,7 +14,8 @@ body {
 	margin: 0;
 }
 
-button, input {
+button,
+input {
 	font-family: inherit;
 	font-size: medium;
 	background-color: var(--bg-color);

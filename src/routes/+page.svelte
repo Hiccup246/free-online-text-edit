@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	let menuVisible = false;
+	let characterCount = 0;
+
 	// Code inspired from https://www.eddymens.com/blog/how-to-allow-the-use-of-tabs-in-a-textarea
 	onMount(async () => {
 		var inputField = document.getElementById('textarea') as HTMLTextAreaElement;
@@ -34,6 +37,8 @@
 	export function setMetrics() {
 		const textareaContent: string = (document.getElementById('textarea') as HTMLTextAreaElement)
 			.value;
+
+		characterCount = textareaContent.length;
 
 		if (textareaContent == '') return setWordLineCount(0, 0);
 
@@ -92,6 +97,10 @@
 			alert('You can only pritty print valid JSON!');
 		}
 	}
+
+	export function toggleMenu() {
+		menuVisible = !menuVisible;
+	}
 </script>
 
 <svelte:head>
@@ -113,37 +122,42 @@
 </svelte:head>
 
 <div class="app">
-	<!-- svelte-ignore a11y-autofocus -->
-	<textarea aria-label="text edit" autofocus on:input={() => setMetrics()} id="textarea" />
-	<div class="message">
-		<james-watt-calling-card modal-bg-color="#F3EFE0">
-			<div class="message__description">Peace and love, peace and love!</div>
-		</james-watt-calling-card>
-
-		<div class="message__actions">
-			<div class="message__buttons">
-				<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download Txt</button>
+	<div class="burger-menu">
+		{#if menuVisible}
+			<div class="text-metadata">
+				<span id="word-count">Word Count: 0</span>
+				<span id="line-count">Line Count: 0</span>
+				<div>Character count: {characterCount}</div>
 				<button
 					class="message_pretty-print"
 					title="JSON Pretty Print"
-					on:click={() => prettyPrint()}>PP</button
+					on:click={() => prettyPrint()}>Format JSON</button
 				>
+
+				<div class="download-text">
+					<input
+						class="download-filename"
+						type="text"
+						maxlength="50"
+						placeholder="Txt filename"
+						id="filename-input"
+					/>
+					<button class="download-text-button" on:click={() => downloadToTxt()}>Download Txt</button>
+				</div>
+
+				<div class="message__description">Peace and love, peace and love!</div>
 			</div>
+		{/if}
 
-			<input
-				class="message__filename"
-				type="text"
-				maxlength="50"
-				placeholder="Txt filename"
-				id="filename-input"
-			/>
-		</div>
-
-		<div class="message__textarea-counts">
-			<span id="word-count">Word Count: 0</span>
-			<span id="line-count">Line Count: 0</span>
-		</div>
+		<button class="burger-toggle" on:click={() => toggleMenu()}>
+			<div class="burger-line"></div>
+			<div class="burger-line"></div>
+			<div class="burger-line"></div>
+		</button>
 	</div>
+
+	<!-- svelte-ignore a11y-autofocus -->
+	<textarea aria-label="text edit" autofocus on:input={() => setMetrics()} id="textarea" />
 </div>
 
 <style>
@@ -170,6 +184,7 @@
 		margin: 0;
 		background-color: var(--bg-color);
 		font-size: 16px;
+		z-index: 0;
 	}
 
 	textarea:valid {
@@ -247,5 +262,68 @@
 		.message__actions {
 			grid-template-columns: repeat(1, minmax(0, 1fr));
 		}
+	}
+
+	.burger-menu {
+		z-index: 1;
+		position: absolute;
+		right: 0;
+		top: 0;
+		border: 2px solid var(--border-color);
+		display: flex;
+		flex-direction: row;
+		gap: 20px;
+		justify-content: flex-end;
+		/* padding: 5px 5px; */
+		padding: 10px 5px;
+		background-color: var(--bg-color);
+
+	}
+
+	.burger-toggle {
+		border: none;
+		width: 40px;
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		cursor: pointer;
+	}
+
+	.burger-line {
+		width: 100%;
+		height: 2px;
+		background-color: var(--border-color);
+	}
+
+	.text-metadata {
+		padding: 0 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: self-start;
+		gap: 10px;
+	}
+
+	.download-text {
+		display: flex;
+		flex-direction: column;
+		background-color: var(--bg-color);
+	}
+
+	.download-text-button {
+		border-top: none;
+		background-color: var(--bg-color);
+		cursor: pointer;
+	}
+
+	.download-filename {
+		text-align: center;
+		height: 100%;
+		outline: none;
+		border-style: outset;
+		appearance: unset;
+	}
+
+	.download-filename:focus {
+		border-style: inset;
 	}
 </style>

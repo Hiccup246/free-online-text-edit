@@ -5,39 +5,38 @@
 	let wordCount = 0
 	let lineCount = 0;
 
+	let currentFileName = "";
+	let textAreaElement: HTMLTextAreaElement;
+
 	// Code inspired from https://www.eddymens.com/blog/how-to-allow-the-use-of-tabs-in-a-textarea
 	onMount(async () => {
-		var inputField = document.getElementById('textarea') as HTMLTextAreaElement;
-		const thisRef = inputField;
-
-		inputField.onkeydown = (event) => {
+		textAreaElement.onkeydown = (event) => {
 			if (event.shiftKey && event.key == 'Tab') {
-				const lastNewLine = inputField.value.lastIndexOf('\n', thisRef.selectionStart);
-				const indexOfLastTab = inputField.value.lastIndexOf('\t', thisRef.selectionStart);
+				const lastNewLine = textAreaElement.value.lastIndexOf('\n', textAreaElement.selectionStart);
+				const indexOfLastTab = textAreaElement.value.lastIndexOf('\t', textAreaElement.selectionStart);
 
 				if (
 					(indexOfLastTab >= lastNewLine ||
 						lastNewLine == -1 ||
-						lastNewLine >= thisRef.selectionStart) &&
+						lastNewLine >= textAreaElement.selectionStart) &&
 					indexOfLastTab != -1
 				) {
-					thisRef.setRangeText('', indexOfLastTab, indexOfLastTab + 1, 'end');
+					textAreaElement.setRangeText('', indexOfLastTab, indexOfLastTab + 1, 'end');
 				}
 
 				return false; //prevent default action
 			}
 
 			if (!event.shiftKey && event.key == 'Tab') {
-				thisRef.setRangeText('\t', thisRef.selectionStart, thisRef.selectionStart, 'end');
+				textAreaElement.setRangeText('\t', textAreaElement.selectionStart, textAreaElement.selectionStart, 'end');
 
 				return false; //prevent default action
 			}
 		};
 	});
 
-	export function setMetrics() {
-		const textareaContent: string = (document.getElementById('textarea') as HTMLTextAreaElement)
-			.value;
+	export function setMetrics(e: Event & { currentTarget: EventTarget & HTMLTextAreaElement}) {
+		const textareaContent: string = e.currentTarget.value;
 
 		wordCount = textareaContent.split(/\r\n|\r|\n|\s/).filter(word => word != '').length;
 		lineCount = textareaContent.split(/\r\n|\r|\n/).length;
@@ -47,7 +46,7 @@
 	// Code inspired from https://robkendal.co.uk/blog/2020-04-17-saving-text-to-client-side-file-using-vanilla-js
 	export function downloadToTxt() {
 		const a = document.createElement('a');
-		const textareaContent = (document.getElementById('textarea') as HTMLTextAreaElement).value;
+		const textareaContent = textAreaElement.value;
 		const file = new Blob([textareaContent], { type: 'text/plain' });
 
 		a.href = URL.createObjectURL(file);
@@ -58,7 +57,7 @@
 	}
 
 	export function txtFilename() {
-		const inputValue = (document.getElementById('filename-input') as HTMLInputElement).value;
+		const inputValue = currentFileName;
 		const inputWithoutTxtExtension = inputValue.replace('.txt', '');
 		const trimmedInput = inputWithoutTxtExtension.trim();
 
@@ -69,11 +68,9 @@
 
 	export function prettyPrint() {
 		try {
-			const textarea = document.getElementById('textarea') as HTMLTextAreaElement;
+			const prettyValue = JSON.stringify(JSON.parse(textAreaElement.value), null, 2);
 
-			const prettyValue = JSON.stringify(JSON.parse(textarea.value), null, 2);
-
-			textarea.value = prettyValue;
+			textAreaElement.value = prettyValue;
 		} catch (_error) {
 			alert('You can only pritty print valid JSON!');
 		}
@@ -100,8 +97,9 @@
 
 <div class="app">
 	<!-- svelte-ignore a11y-autofocus -->
-	<textarea aria-label="text edit" autofocus on:input={() => setMetrics()} id="textarea" />
-	<div class="message">
+	<textarea aria-label="text edit" bind:this={textAreaElement} autofocus on:input={(e) => setMetrics(e)} class="textarea"/>
+
+	<footer class="footer">
 		<james-watt-calling-card modal-bg-color="#F3EFE0">
 			<div class="message__description">Peace and love, peace and love!</div>
 		</james-watt-calling-card>
@@ -121,7 +119,7 @@
 				type="text"
 				maxlength="50"
 				placeholder="Txt filename"
-				id="filename-input"
+				on:input={(e) => currentFileName = e.currentTarget.value}
 			/>
 		</div>
 
@@ -130,7 +128,7 @@
 			<div class="word-count">Word count: {wordCount}</div>
 			<div class="line-count">Line count: {lineCount}</div>
 		</div>
-	</div>
+	</footer>
 </div>
 
 <style>
@@ -147,7 +145,7 @@
 		justify-content: center;
 	}
 
-	textarea {
+	.textarea {
 		display: block;
 		overflow-x: hidden;
 		overflow-y: scroll;
@@ -159,12 +157,12 @@
 		font-size: 16px;
 	}
 
-	textarea:valid {
+	.textarea:valid {
 		border: 2px solid var(--border-color);
 		outline: none;
 	}
 
-	.message {
+	.footer {
 		display: flex;
 		justify-content: space-between;
 		border-bottom: 2px solid var(--border-color);

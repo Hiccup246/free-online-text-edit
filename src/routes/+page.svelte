@@ -44,14 +44,6 @@
 		characterCount = textareaContent.length;		
 	}
 
-	export function setWordLineCount(wordCount: number, lineCount: number) {
-		const wordCountElem = document.getElementById('word-count');
-		const lineCountElem = document.getElementById('line-count');
-
-		if (wordCountElem) wordCountElem.innerHTML = 'Word Count: ' + wordCount;
-		if (lineCountElem) lineCountElem.innerHTML = 'Line Count: ' + lineCount;
-	}
-
 	// Code inspired from https://robkendal.co.uk/blog/2020-04-17-saving-text-to-client-side-file-using-vanilla-js
 	export function downloadToTxt() {
 		const a = document.createElement('a');

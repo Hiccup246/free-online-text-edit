@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	let characterCount = 0;
+	let wordCount = 0
+	let lineCount = 0;
+
 	// Code inspired from https://www.eddymens.com/blog/how-to-allow-the-use-of-tabs-in-a-textarea
 	onMount(async () => {
 		var inputField = document.getElementById('textarea') as HTMLTextAreaElement;
@@ -35,19 +39,9 @@
 		const textareaContent: string = (document.getElementById('textarea') as HTMLTextAreaElement)
 			.value;
 
-		if (textareaContent == '') return setWordLineCount(0, 0);
-
-		const wordSplit = textareaContent.split(/\r\n|\r|\n|\s/);
-		const newLinesCount = textareaContent.split(/\r\n|\r|\n/).length;
-		var wordCount = 0;
-
-		for (var i = 0; i < wordSplit.length; i++) {
-			if (wordSplit[i] != '') {
-				wordCount += 1;
-			}
-		}
-
-		setWordLineCount(wordCount, newLinesCount);
+		wordCount = textareaContent.split(/\r\n|\r|\n|\s/).filter(word => word != '').length;
+		lineCount = textareaContent.split(/\r\n|\r|\n/).length;
+		characterCount = textareaContent.length;		
 	}
 
 	export function setWordLineCount(wordCount: number, lineCount: number) {
@@ -140,8 +134,9 @@
 		</div>
 
 		<div class="message__textarea-counts">
-			<span id="word-count">Word Count: 0</span>
-			<span id="line-count">Line Count: 0</span>
+			<div class="word-count">Character count: {characterCount}</div>
+			<div class="word-count">Word count: {wordCount}</div>
+			<div class="line-count">Line count: {lineCount}</div>
 		</div>
 	</div>
 </div>

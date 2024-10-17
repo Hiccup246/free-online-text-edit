@@ -2,10 +2,10 @@
 	import { onMount } from 'svelte';
 
 	let characterCount = 0;
-	let wordCount = 0
+	let wordCount = 0;
 	let lineCount = 0;
 
-	let currentFileName = "";
+	let currentFileName = '';
 	let textAreaElement: HTMLTextAreaElement;
 
 	// Code inspired from https://www.eddymens.com/blog/how-to-allow-the-use-of-tabs-in-a-textarea
@@ -13,7 +13,10 @@
 		textAreaElement.onkeydown = (event) => {
 			if (event.shiftKey && event.key == 'Tab') {
 				const lastNewLine = textAreaElement.value.lastIndexOf('\n', textAreaElement.selectionStart);
-				const indexOfLastTab = textAreaElement.value.lastIndexOf('\t', textAreaElement.selectionStart);
+				const indexOfLastTab = textAreaElement.value.lastIndexOf(
+					'\t',
+					textAreaElement.selectionStart
+				);
 
 				if (
 					(indexOfLastTab >= lastNewLine ||
@@ -28,19 +31,24 @@
 			}
 
 			if (!event.shiftKey && event.key == 'Tab') {
-				textAreaElement.setRangeText('\t', textAreaElement.selectionStart, textAreaElement.selectionStart, 'end');
+				textAreaElement.setRangeText(
+					'\t',
+					textAreaElement.selectionStart,
+					textAreaElement.selectionStart,
+					'end'
+				);
 
 				return false; //prevent default action
 			}
 		};
 	});
 
-	export function setMetrics(e: Event & { currentTarget: EventTarget & HTMLTextAreaElement}) {
+	export function setMetrics(e: Event & { currentTarget: EventTarget & HTMLTextAreaElement }) {
 		const textareaContent: string = e.currentTarget.value;
 
-		wordCount = textareaContent.split(/\r\n|\r|\n|\s/).filter(word => word != '').length;
+		wordCount = textareaContent.split(/\r\n|\r|\n|\s/).filter((word) => word != '').length;
 		lineCount = textareaContent.split(/\r\n|\r|\n/).length;
-		characterCount = textareaContent.length;		
+		characterCount = textareaContent.length;
 	}
 
 	// Code inspired from https://robkendal.co.uk/blog/2020-04-17-saving-text-to-client-side-file-using-vanilla-js
@@ -97,42 +105,47 @@
 
 <div class="app">
 	<!-- svelte-ignore a11y-autofocus -->
-	<textarea aria-label="text edit" bind:this={textAreaElement} autofocus on:input={(e) => setMetrics(e)} class="textarea"/>
+	<textarea
+		aria-label="text edit"
+		bind:this={textAreaElement}
+		autofocus
+		on:input={(e) => setMetrics(e)}
+		class="textarea"
+	/>
 
 	<footer class="footer">
 		<james-watt-calling-card modal-bg-color="#F3EFE0">
-			<div class="message__description">Peace and love, peace and love!</div>
+			<div class="peace-message">Peace and love, peace and love!</div>
 		</james-watt-calling-card>
 
-		<div class="message__actions">
-			<div class="message__buttons">
-				<button class="message__dwl-button" on:click={() => downloadToTxt()}>Download Txt</button>
-				<button
-					class="message_pretty-print"
-					title="JSON Pretty Print"
-					on:click={() => prettyPrint()}>PP</button
+		<div class="text-actions">
+			<div class="text-action-buttons">
+				<button class="download-text-button" on:click={() => downloadToTxt()}>Download Txt</button>
+
+				<button class="format-json-button" title="JSON Pretty Print" on:click={() => prettyPrint()}
+					>PP</button
 				>
 			</div>
 
 			<input
-				class="message__filename"
+				class="download-filename-input"
 				type="text"
 				maxlength="50"
 				placeholder="Txt filename"
-				on:input={(e) => currentFileName = e.currentTarget.value}
+				on:input={(e) => (currentFileName = e.currentTarget.value)}
 			/>
 		</div>
 
-		<div class="message__textarea-counts">
-			<div class="word-count">Character count: {characterCount}</div>
-			<div class="word-count">Word count: {wordCount}</div>
-			<div class="line-count">Line count: {lineCount}</div>
+		<div class="text-metadata">
+			<div>Character count: {characterCount}</div>
+			<div>Word count: {wordCount}</div>
+			<div>Line count: {lineCount}</div>
 		</div>
 	</footer>
 </div>
 
 <style>
-	.message__buttons {
+	.text-action-buttons {
 		display: flex;
 		justify-content: space-between;
 		gap: 5px;
@@ -173,17 +186,17 @@
 		gap: 10px;
 	}
 
-	.message__description {
+	.peace-message {
 		margin: auto 0;
 		text-align: center;
 		display: flex;
 	}
 
-	.message__description:hover {
+	.peace-message:hover {
 		text-decoration: underline;
 	}
 
-	.message__textarea-counts {
+	.text-metadata {
 		margin: auto 0;
 		display: flex;
 		flex-wrap: wrap;
@@ -192,7 +205,7 @@
 		justify-content: center;
 	}
 
-	.message__actions {
+	.text-actions {
 		margin: auto 0;
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -200,12 +213,12 @@
 		align-items: center;
 	}
 
-	.message__dwl-button {
+	.download-text-button {
 		background-color: var(--bg-color);
 		cursor: pointer;
 	}
 
-	.message__filename {
+	.download-filename-input {
 		background-color: var(--bg-color);
 		text-align: center;
 		height: 100%;
@@ -214,22 +227,23 @@
 		appearance: unset;
 	}
 
-	.message__filename:focus {
+	.download-filename-input:focus {
 		border-style: inset;
 	}
 
-	.message_pretty-print {
+	.format-json-button {
 		width: fit-content;
+		cursor: pointer;
 	}
 
 	@media (max-width: 566px) {
-		.message {
+		.footer {
 			justify-content: center;
 			flex-direction: column;
 			gap: 20px;
 		}
 
-		.message__actions {
+		.text-actions {
 			grid-template-columns: repeat(1, minmax(0, 1fr));
 		}
 	}
